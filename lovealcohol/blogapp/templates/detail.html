@@ -1,0 +1,16 @@
+{% extends 'base.html'%} <!--extends 우선순위가 가장 높음 -->
+
+{% block contents %}
+    <body>
+    <div class="container">
+    <br><br>
+    <h1>{{details.title}}</h1>
+    <p>작성자 : {{details.nickname}}</p>
+    <p>날짜 : {{details.pub_data}}</p>
+    {% if details.image %}
+    <img src="{{details.image.url}}" height = 200>
+    {% endif %}
+    <p>내용 : {{details.body}}</p>
+    </div>
+    </body>
+{% endblock %}

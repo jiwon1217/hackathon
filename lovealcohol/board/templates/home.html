@@ -1,0 +1,12 @@
+	
+<h1>전체 포스트</h1>
+<a href="/new">글쓰기</a>
+{% for pos in post %}
+<div>
+  <h2><a href="/show/{{ pos.id }}">{{ pos.title }}</a></h2>
+  <p>{{ pos.created_at }}</p>
+  <p>{{ pos.id }}</p>
+  <a href="/edit/{{ pos.id }}">수정</a><!--수정은 유저정보 받아와서 유저정보랑 이 글의 유저정보와 일치할때만 나오게 -->
+  <a href="/delete/{{ pos.id }}">삭제</a><!--삭제도 마찬가지-->
+</div>
+{% endfor %}

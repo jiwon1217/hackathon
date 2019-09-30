@@ -1,0 +1,85 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'home' %}">애주타임</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- if 문 -->
+      {% if user.is_authenticated %}
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+  
+          <li class="nav-item active">
+            <a class="nav-link" href="/calendar">My calendar</a>
+          </li>
+  
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">Our story <span class="sr-only">(current)</span></a>
+          </li>
+  
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'myhome' %}">My story</a>
+          </li>
+  
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'blogpost' %}">Make story</a>
+          </li>
+  
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'posthome' %}">Community</a>
+          </li>
+  
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+  
+        </ul>
+  
+      </div>
+      {% endif %}
+    </nav>
+  
+
+<div>
+    <h1>Sign Up!</h1>
+
+    <form method="POST" action="{% url 'signup'%}">
+
+    {% csrf_token %}
+    Username:
+    <br>
+    <input name="username"  type="text" value="">
+    <br>
+    Nickname:
+    <br>
+    <input name="nickname"  type="text" value="">
+    <br>
+    Password:
+    <br>
+    <input name="password1"  type="password" value="">
+    <br>
+    Confirm Password:
+    <br>
+    <input name="password2"  type="password" value="">
+    <br>
+    <br>
+    <input class="btn btn-primary" type="submit" value="Sign Up!">
+    </form>
+</div>

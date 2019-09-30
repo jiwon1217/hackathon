@@ -1,0 +1,34 @@
+{% extends 'base.html'%}
+
+{% block contents %}
+
+<h1>{{ post.title }}</h1>
+<p>작성자 : {{ post.nickname }}</p>
+<p>날짜 : {{ post.created_at }}</p>
+<p>내용 :{{ post.content }}</p>
+{% if post.image %}
+<img src="{{post.image.url}}" height=200>
+{% endif %}
+<br>
+<br>
+<a href="/board">back</a>
+<br>
+<br>
+<form action="/board/comentcreate/{{ post.id }}" method="POST">
+  {% csrf_token %}
+  <input type="hidden" name="username" value="{{user.username}}">
+  <div>
+    <label for="coment_content">댓글</label><br><!--댓글 삭제는 유저와 댓글 유저, 수정 불가-->
+    <input type="text" name="coment_content" id="coment_content">
+  </div>
+  <button type="submit" >댓글쓰기</button>
+</form>
+{% for c in coments %}
+{{c.title}}
+<br>
+{% if user.username == c.username %}
+<button type="button"><a href="/board/commentdelete/{{post.id}}/{{c.id}}">삭제</a></button>
+{% endif %}
+{% endfor %}
+
+{% endblock %}
